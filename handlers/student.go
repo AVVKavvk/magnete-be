@@ -242,6 +242,7 @@ func MigrateMonth(c echo.Context) error {
         if err := cursor.Decode(&student); err == nil {
             student.ID = primitive.NewObjectID()
             student.RegisterDate = time.Now().Format(time.RFC3339)
+            student.AmountPaid = false
             students = append(students, student)
         }
     }
