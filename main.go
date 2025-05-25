@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/go-playground/validator"
@@ -56,6 +57,10 @@ func main() {
 
 	// Routes
 	e.GET("/", handlers.HomePage)
+	e.HEAD("/", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
+	
 	e.POST("/students/:month", handlers.CreateStudent)
 	e.GET("/students/:month", handlers.GetStudents)
 	e.GET("/students/:month/search", handlers.SearchStudents)
